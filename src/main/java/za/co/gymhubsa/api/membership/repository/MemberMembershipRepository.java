@@ -19,4 +19,6 @@ public interface MemberMembershipRepository extends JpaRepository<MemberMembersh
     List<MemberMembership> findByStatusAndEndDateBetween(MembershipStatus status, LocalDate from, LocalDate to);
 
     List<MemberMembership> findByStatusAndEndDateBefore(MembershipStatus status, LocalDate date);
+
+    List<MemberMembership> findByStatus(MembershipStatus status);
 }
