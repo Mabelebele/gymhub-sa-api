@@ -54,6 +54,10 @@ public class Member extends BaseEntity {
     @Column(name = "profile_photo_url", length = 500)
     private String profilePhotoUrl;
 
+    /** Unique token encoded into the member's QR membership card for attendance check-in. */
+    @Column(name = "qr_code", unique = true, length = 100)
+    private String qrCode;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default

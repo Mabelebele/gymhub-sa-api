@@ -16,6 +16,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     boolean existsByUserId(Long userId);
 
+    Optional<Member> findByQrCode(String qrCode);
+
+    Optional<Member> findByUser_EmailIgnoreCase(String email);
+
     @Query("""
             select m from Member m
             join fetch m.user u

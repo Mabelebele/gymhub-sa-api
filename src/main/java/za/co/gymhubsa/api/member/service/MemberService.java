@@ -22,6 +22,7 @@ import za.co.gymhubsa.api.member.entity.MemberStatus;
 import za.co.gymhubsa.api.member.repository.MemberRepository;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +61,7 @@ public class MemberService {
                 .emergencyContactPhone(request.emergencyContactPhone())
                 .status(MemberStatus.ACTIVE)
                 .joinDate(LocalDate.now())
+                .qrCode(UUID.randomUUID().toString())
                 .build();
         memberRepository.save(member);
 

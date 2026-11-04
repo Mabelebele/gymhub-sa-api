@@ -19,6 +19,7 @@ public record MemberResponse(
         String emergencyContactName,
         String emergencyContactPhone,
         String profilePhotoUrl,
+        String qrCode,
         MemberStatus status,
         LocalDate joinDate
 ) {
@@ -36,6 +37,7 @@ public record MemberResponse(
                 member.getEmergencyContactName(),
                 member.getEmergencyContactPhone(),
                 member.getProfilePhotoUrl(),
+                member.getQrCode(),
                 member.getStatus(),
                 member.getJoinDate()
         );
