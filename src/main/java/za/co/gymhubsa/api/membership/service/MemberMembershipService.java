@@ -116,6 +116,16 @@ public class MemberMembershipService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
+    public MemberMembershipResponse getMyCurrent(String email) {
+        return getCurrent(resolveMemberIdByEmail(email));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MemberMembershipResponse> getMyHistory(String email, Pageable pageable) {
+        return getHistory(resolveMemberIdByEmail(email), pageable);
+    }
+
     /**
      * Flips any ACTIVE membership whose end date has passed to EXPIRED.
      * Invoked daily by {@code MembershipExpiryScheduler}.
@@ -143,6 +153,12 @@ public class MemberMembershipService {
     private Member findMemberOrThrow(Long memberId) {
         return memberRepository.findById(memberId)
                 .orElseThrow(() -> ResourceNotFoundException.of("Member", memberId));
+    }
+
+    private Long resolveMemberIdByEmail(String email) {
+        return memberRepository.findByUser_EmailIgnoreCase(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Member profile not found"))
+                .getId();
     }
 
     private MemberMembership findLatestOrThrow(Long memberId) {

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,6 +71,22 @@ public class MemberMembershipController {
     public ResponseEntity<ApiResponse<Page<MemberMembershipResponse>>> getHistory(
             @PathVariable Long memberId, @PageableDefault(size = 20) Pageable pageable) {
         return ResponseEntity.ok(ApiResponse.success(memberMembershipService.getHistory(memberId, pageable)));
+    }
+
+    @Operation(summary = "Get the signed-in member's own currently active membership")
+    @PreAuthorize("hasRole('MEMBER')")
+    @GetMapping("/me/current")
+    public ResponseEntity<ApiResponse<MemberMembershipResponse>> getMyCurrent(Authentication authentication) {
+        return ResponseEntity.ok(ApiResponse.success(memberMembershipService.getMyCurrent(authentication.getName())));
+    }
+
+    @Operation(summary = "Get the signed-in member's own membership history")
+    @PreAuthorize("hasRole('MEMBER')")
+    @GetMapping("/me/history")
+    public ResponseEntity<ApiResponse<Page<MemberMembershipResponse>>> getMyHistory(
+            Authentication authentication, @PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(ApiResponse.success(
+                memberMembershipService.getMyHistory(authentication.getName(), pageable)));
     }
 
     @Operation(summary = "List active memberships expiring within the given number of days (default 7)")
