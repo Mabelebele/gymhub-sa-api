@@ -1,0 +1,28 @@
+# Local development profile: in-memory H2 database, SQL logging on,
+# H2 web console enabled, and a fixed (non-production) JWT secret so the
+# app runs out of the box with `./mvnw spring-boot:run`.
+spring:
+  datasource:
+    url: jdbc:h2:mem:gymhubsa;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-key-change-me-dev-only-secret-key-change-me}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
