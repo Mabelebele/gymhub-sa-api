@@ -19,6 +19,9 @@ import za.co.gymhubsa.api.auth.repository.UserRepository;
 import za.co.gymhubsa.api.common.exception.BadRequestException;
 import za.co.gymhubsa.api.common.exception.ResourceNotFoundException;
 import za.co.gymhubsa.api.common.exception.UnauthorizedException;
+import za.co.gymhubsa.api.notification.entity.NotificationChannel;
+import za.co.gymhubsa.api.notification.entity.NotificationType;
+import za.co.gymhubsa.api.notification.service.NotificationService;
 import za.co.gymhubsa.api.security.UserPrincipal;
 import za.co.gymhubsa.api.security.jwt.JwtProperties;
 import za.co.gymhubsa.api.security.jwt.JwtService;
@@ -37,6 +40,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final JwtProperties jwtProperties;
+    private final NotificationService notificationService;
 
     public LoginResponse login(LoginRequest request) {
         try {
@@ -98,9 +102,9 @@ public class AuthService {
                 .build();
         passwordResetTokenRepository.save(resetToken);
 
-        // TODO: replace with a real call into the Notification module (email/SMS)
-        // once it exists. For now we log the token so the flow is testable locally.
-        log.info("Password reset token for {}: {}", user.getEmail(), token);
+        notificationService.sendDirect(NotificationChannel.EMAIL, NotificationType.PASSWORD_RESET, user.getEmail(),
+                "Reset your GymHub SA password",
+                "Use this token to reset your password: " + token + " (expires in 1 hour)");
     }
 
     @Transactional

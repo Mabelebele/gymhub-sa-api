@@ -21,6 +21,7 @@ import za.co.gymhubsa.api.auth.repository.UserRepository;
 import za.co.gymhubsa.api.common.exception.BadRequestException;
 import za.co.gymhubsa.api.common.exception.ResourceNotFoundException;
 import za.co.gymhubsa.api.common.exception.UnauthorizedException;
+import za.co.gymhubsa.api.notification.service.NotificationService;
 import za.co.gymhubsa.api.security.jwt.JwtProperties;
 import za.co.gymhubsa.api.security.jwt.JwtService;
 import org.mockito.Mockito;
@@ -48,6 +49,8 @@ class AuthServiceTest {
     private PasswordEncoder passwordEncoder;
     @Mock
     private Authentication authentication;
+    @Mock
+    private NotificationService notificationService;
 
     private JwtService jwtService;
     private JwtProperties jwtProperties;
@@ -63,7 +66,7 @@ class AuthServiceTest {
         jwtService = new JwtService(jwtProperties);
 
         authService = new AuthService(authenticationManager, userRepository, passwordResetTokenRepository,
-                passwordEncoder, jwtService, jwtProperties);
+                passwordEncoder, jwtService, jwtProperties, notificationService);
 
         testUser = User.builder()
                 .firstName("Jane")
