@@ -10,6 +10,7 @@ import za.co.gymhubsa.api.payment.entity.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
@@ -17,6 +18,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     Page<Payment> findByMemberIdOrderByCreatedAtDesc(Long memberId, Pageable pageable);
 
     Optional<Payment> findByGatewayReference(String gatewayReference);
+
+    List<Payment> findTop5ByStatusOrderByPaidAtDesc(PaymentStatus status);
 
     @Query("""
             select coalesce(sum(p.amount), 0) from Payment p

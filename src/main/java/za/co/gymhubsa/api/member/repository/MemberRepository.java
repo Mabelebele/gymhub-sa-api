@@ -20,6 +20,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Optional<Member> findByUser_EmailIgnoreCase(String email);
 
+    long countByStatus(MemberStatus status);
+
     @Query("""
             select m from Member m
             join fetch m.user u

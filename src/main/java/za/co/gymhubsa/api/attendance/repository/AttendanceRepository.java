@@ -16,4 +16,6 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     Page<Attendance> findByMemberIdOrderByCheckInTimeDesc(Long memberId, Pageable pageable);
 
     List<Attendance> findByCheckInTimeBetweenOrderByCheckInTimeAsc(Instant from, Instant to);
+
+    long countByCheckInTimeBetween(Instant from, Instant to);
 }
