@@ -47,3 +47,6 @@ application-local.yml
 # OS
 .DS_Store
 Thumbs.db
+
+# Local file storage uploads (dev)
+/uploads/
