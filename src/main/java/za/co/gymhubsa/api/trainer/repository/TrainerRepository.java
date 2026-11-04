@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import za.co.gymhubsa.api.trainer.entity.Trainer;
 import za.co.gymhubsa.api.trainer.entity.TrainerStatus;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TrainerRepository extends JpaRepository<Trainer, Long> {
@@ -17,6 +18,8 @@ public interface TrainerRepository extends JpaRepository<Trainer, Long> {
     Optional<Trainer> findByUser_EmailIgnoreCase(String email);
 
     boolean existsByUserId(Long userId);
+
+    List<Trainer> findByStatus(TrainerStatus status);
 
     @Query("""
             select t from Trainer t
