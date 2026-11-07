@@ -1,0 +1,6 @@
+{
+  "channel": "EMAIL",
+  "subject": "Sale!",
+  "message": "20% off this week",
+  "memberIds": null
+}

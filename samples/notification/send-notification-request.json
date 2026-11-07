@@ -1,0 +1,7 @@
+{
+  "memberId": 1,
+  "channel": "EMAIL",
+  "type": "GENERAL",
+  "subject": "Welcome",
+  "message": "Welcome to GymHub SA!"
+}

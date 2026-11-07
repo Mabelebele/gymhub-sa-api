@@ -21,7 +21,9 @@ app:
   jwt:
     secret: ${JWT_SECRET:dev-only-secret-key-change-me-dev-only-secret-key-change-me}
   cors:
-    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
+    # Includes common Expo web-preview ports (varies 8081-8084 depending on what's free)
+    # alongside the Angular dev server, so both web clients can reach the API locally.
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200,http://localhost:8081,http://localhost:8082,http://localhost:8083,http://localhost:8084}
 
 logging:
   level:

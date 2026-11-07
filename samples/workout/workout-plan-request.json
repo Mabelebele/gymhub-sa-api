@@ -1,0 +1,24 @@
+{
+  "name": "Beginner Full Body",
+  "description": "3x/week full body",
+  "difficultyLevel": "BEGINNER",
+  "durationWeeks": 4,
+  "exercises": [
+    {
+      "name": "Squat",
+      "sets": 3,
+      "reps": 12,
+      "restSeconds": 60,
+      "sortOrder": 1,
+      "notes": "Bodyweight or goblet squat"
+    },
+    {
+      "name": "Push-up",
+      "sets": 3,
+      "reps": 10,
+      "restSeconds": 60,
+      "sortOrder": 2,
+      "notes": "Modify on knees if needed"
+    }
+  ]
+}

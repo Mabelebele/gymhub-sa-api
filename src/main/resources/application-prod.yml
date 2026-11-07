@@ -1,9 +1,11 @@
-# Production profile: PostgreSQL via environment variables (set these on
-# Render or wherever the app is deployed). JWT secret MUST be provided via
-# the JWT_SECRET env var — there is no default for production.
+# Production-style profile: PostgreSQL via environment variables. JWT secret
+# MUST be provided via the JWT_SECRET env var — there is no default here.
+#
+# SPRING_DATASOURCE_URL can be set directly, or left unset and composed from
+# DB_HOST/DB_PORT/DB_NAME.
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST}:${DB_PORT:5432}/${DB_NAME}}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver

@@ -1,0 +1,7 @@
+{
+  "memberId": 1,
+  "membershipId": 1,
+  "amount": 200.00,
+  "method": "CASH",
+  "notes": "Front desk deposit"
+}

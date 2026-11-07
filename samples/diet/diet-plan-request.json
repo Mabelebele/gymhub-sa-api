@@ -1,0 +1,22 @@
+{
+  "name": "High-Protein Cutting",
+  "description": "Calorie deficit with high protein for fat loss",
+  "dailyCalorieTarget": 1800,
+  "proteinGrams": 160,
+  "carbsGrams": 140,
+  "fatGrams": 45,
+  "meals": [
+    {
+      "name": "Breakfast",
+      "description": "Oats with whey protein",
+      "calories": 400,
+      "sortOrder": 1
+    },
+    {
+      "name": "Lunch",
+      "description": "Grilled chicken with rice and veggies",
+      "calories": 600,
+      "sortOrder": 2
+    }
+  ]
+}

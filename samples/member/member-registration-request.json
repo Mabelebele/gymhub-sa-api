@@ -1,0 +1,12 @@
+{
+  "firstName": "Khanyisile Goodness",
+  "lastName": "Kunene",
+  "email": "khanyisile.kunene@example.com",
+  "password": "Password123!",
+  "phoneNumber": "0821234567",
+  "dateOfBirth": "1996-04-12",
+  "gender": "FEMALE",
+  "address": "12 Jacaranda St, Pretoria",
+  "emergencyContactName": "Thandiwe Kunene",
+  "emergencyContactPhone": "0831234567"
+}

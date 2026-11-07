@@ -1,0 +1,3 @@
+{
+  "refreshToken": "<paste the refreshToken returned by /api/v1/auth/login here>"
+}
